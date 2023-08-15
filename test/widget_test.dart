@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:innofest_app/main.dart';
 import 'package:innofest_app/screens/HomePage.dart';
 
 void main() {
