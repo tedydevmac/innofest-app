@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: SafeArea(
+          bottom: false,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: ListView(
                   scrollDirection: Axis.vertical,
-                  physics: const NeverScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   shrinkWrap: true,
                   children: [
                     GestureDetector(
