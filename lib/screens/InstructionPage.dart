@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:innofest_app/screens/ExercisePage.dart';
 
 class InstructionPage extends StatefulWidget {
   final String appBarTitle;
@@ -14,7 +16,6 @@ class _InstructionPageState extends State<InstructionPage>
     with TickerProviderStateMixin {
   bool expanded1 = false;
   bool expanded2 = false;
-  bool expanded3 = false;
   // 1
   late final AnimationController _controller1 = AnimationController(
     duration: const Duration(milliseconds: 250),
@@ -44,6 +45,33 @@ class _InstructionPageState extends State<InstructionPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: SizedBox(
+        width: 95,
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => const ExercisePage(),
+              ),
+            );
+          },
+          backgroundColor: Colors.green,
+          enableFeedback: true,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Text(
+              "Start",
+              style: TextStyle(
+                  fontFamily: "Avenir Roman",
+                  fontSize: 25,
+                  color: Colors.white),
+            ),
+          ),
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -56,213 +84,77 @@ class _InstructionPageState extends State<InstructionPage>
                 fit: BoxFit.cover,
               ),
             ),
-            title: Text(
-              "Exercise ${widget.imageNo}",
-              style: const TextStyle(fontFamily: "Avenir Roman"),
-            ),
-            centerTitle: true,
-          ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              physics: const NeverScrollableScrollPhysics(),
-              child: Column(
+            pinned: true,
+            backgroundColor: widget.imageNo == "1"
+                ? Colors.blueGrey[700]
+                : widget.imageNo == "2"
+                    ? Colors.indigo[100]
+                    : Colors.white,
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(40),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    height: expanded1 ? 350 : 80,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.redAccent,
-                      border: Border.all(width: 0.3, color: Colors.black87),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              const Text(
-                                "Information",
-                                style: TextStyle(
-                                    fontFamily: "Avenir Roman",
-                                    color: Colors.white,
-                                    fontSize: 25),
-                              ),
-                              const Spacer(),
-                              RotationTransition(
-                                turns: Tween(begin: 0.0, end: 0.5)
-                                    .animate(_animation1),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.keyboard_arrow_down_rounded,
-                                    size: 25,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      expanded1 = !expanded1;
-                                      if (_controller1.status ==
-                                          AnimationStatus.completed) {
-                                        _controller1.reverse();
-                                      } else {
-                                        _controller1.forward();
-                                      }
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 5.0),
+                    child: Text(
+                      widget.appBarTitle,
+                      style: TextStyle(
+                        fontFamily: "Avenir Roman",
+                        fontSize:
+                            widget.appBarTitle == "Cardiovascular Endurance"
+                                ? 30
+                                : 35,
+                        color: widget.imageNo == "1"
+                            ? Colors.white
+                            : widget.imageNo == "2"
+                                ? Colors.white
+                                : widget.imageNo == "3"
+                                    ? Colors.black
+                                    : Colors.white,
                       ),
                     ),
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    height: expanded2 ? 350 : 80,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.redAccent,
-                      border: Border.all(width: 0.3, color: Colors.black87),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              const Text(
-                                "Instructions",
-                                style: TextStyle(
-                                    fontFamily: "Avenir Roman",
-                                    color: Colors.white,
-                                    fontSize: 25),
-                              ),
-                              const Spacer(),
-                              RotationTransition(
-                                turns: Tween(begin: 0.0, end: 0.5)
-                                    .animate(_animation2),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.keyboard_arrow_down_rounded,
-                                    size: 25,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      expanded2 = !expanded2;
-                                      if (_controller2.status ==
-                                          AnimationStatus.completed) {
-                                        _controller2.reverse();
-                                      } else {
-                                        _controller2.forward();
-                                      }
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 5),
-                        child: MaterialButton(
-                          onPressed: () {},
-                          color: Colors.green[500],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 0,
-                          child: const Text(
-                            "Start",
-                            style: TextStyle(
-                                fontFamily: "Avenir Medium",
-                                fontSize: 23,
-                                color: Colors.white),
-                          ),
-                        ),
-                      )
-                    ],
                   ),
                 ],
               ),
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-/* 
-
-AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.arrow_back_ios_rounded),
-              iconSize: 23,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            );
-          },
-        ),
-        title: Text(
-          widget.appBarTitle,
-          style: const TextStyle(fontFamily: "Avenir Roman", fontSize: 24),
-        ),
-      ),
-
-SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: AnimatedContainer(
+          SliverToBoxAdapter(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  height: expanded ? 200 : 100,
+                  height: expanded1 ? 350 : 80,
                   width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.redAccent,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
+                    border: Border.all(width: 0.3, color: Colors.black87),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            const Text(
+                              "Information",
+                              style: TextStyle(
+                                  fontFamily: "Avenir Roman",
+                                  color: Colors.white,
+                                  fontSize: 25),
+                            ),
+                            const Spacer(),
                             RotationTransition(
                               turns: Tween(begin: 0.0, end: 0.5)
-                                  .animate(_animation),
+                                  .animate(_animation1),
                               child: IconButton(
                                 icon: const Icon(
                                   Icons.keyboard_arrow_down_rounded,
@@ -271,55 +163,102 @@ SafeArea(
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    expanded = !expanded;
-                                    if (_controller.status ==
+                                    expanded1 = !expanded1;
+                                    if (_controller1.status ==
                                         AnimationStatus.completed) {
-                                      _controller.reverse();
+                                      _controller1.reverse();
                                     } else {
-                                      _controller.forward();
+                                      _controller1.forward();
                                     }
                                   });
                                 },
                               ),
                             ),
                           ],
-                        )
+                        ),
+                        if (expanded1 == true)
+                          const Expanded(
+                            child: Text(
+                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                              style: TextStyle(
+                                  fontFamily: "Avenir Medium",
+                                  fontSize: 18,
+                                  color: Colors.white),
+                            ),
+                          ),
                       ],
                     ),
                   ),
                 ),
-              ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  height: expanded2 ? 350 : 80,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                    border: Border.all(width: 0.3, color: Colors.black87),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Instructions",
+                              style: TextStyle(
+                                  fontFamily: "Avenir Roman",
+                                  color: Colors.white,
+                                  fontSize: 25),
+                            ),
+                            const Spacer(),
+                            RotationTransition(
+                              turns: Tween(begin: 0.0, end: 0.5)
+                                  .animate(_animation2),
+                              child: IconButton(
+                                icon: const Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  size: 25,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    expanded2 = !expanded2;
+                                    if (_controller2.status ==
+                                        AnimationStatus.completed) {
+                                      _controller2.reverse();
+                                    } else {
+                                      _controller2.forward();
+                                    }
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        if (expanded2 == true)
+                          const Expanded(
+                            child: Text(
+                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                              style: TextStyle(
+                                  fontFamily: "Avenir Medium",
+                                  fontSize: 18,
+                                  color: Colors.white),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-*/
-
-class _CustomHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final double height;
-  final Widget child;
-
-  _CustomHeaderDelegate({
-    required this.height,
-    required this.child,
-  });
-
-  @override
-  double get minExtent => height;
-  @override
-  double get maxExtent => height;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.fromSize(
-      size: Size.fromHeight(height),
-      child: child,
     );
-  }
-
-  @override
-  bool shouldRebuild(_CustomHeaderDelegate oldDelegate) {
-    return height != oldDelegate.height || child != oldDelegate.child;
   }
 }

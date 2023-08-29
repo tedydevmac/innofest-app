@@ -9,12 +9,12 @@ class Select extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.22,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(imagePath),
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
       ),
       child: Row(
@@ -29,7 +29,7 @@ class Select extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(2),
+              padding: const EdgeInsets.all(3),
               child: Text(
                 title,
                 style: const TextStyle(

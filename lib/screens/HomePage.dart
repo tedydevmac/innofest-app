@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:innofest_app/components/Selection.dart';
 import 'package:innofest_app/screens/InstructionPage.dart';
+import 'package:scroll_snap_list/scroll_snap_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -13,21 +14,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<int> data = [1, 2, 3, 4];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: const Row(
+        backgroundColor: Theme.of(context).brightness == Brightness.light
+            ? Colors.green
+            : Colors.lightGreen,
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               "WorkBud",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-                fontFamily: "Avenir Medium",
-              ),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                  fontFamily: "Avenir Medium",
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.white
+                      : Colors.black),
             ),
           ],
         ),
@@ -49,7 +56,23 @@ class _HomePageState extends State<HomePage> {
                       Navigator.of(context).push(
                         CupertinoPageRoute(
                           builder: (context) => const InstructionPage(
-                            appBarTitle: "Exercise 1",
+                            appBarTitle: "Muscular Endurance",
+                            imageNo: "4",
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Select(
+                      imagePath: 'assets/4.jpg',
+                      title: "Muscular Endurance",
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) => const InstructionPage(
+                            appBarTitle: "Muscular Strength",
                             imageNo: "1",
                           ),
                         ),
@@ -57,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: const Select(
                       imagePath: 'assets/1.jpg',
-                      title: "Exercise 1",
+                      title: "Muscular Strength",
                     ),
                   ),
                   GestureDetector(
@@ -65,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.of(context).push(
                         CupertinoPageRoute(
                           builder: (context) => const InstructionPage(
-                            appBarTitle: "Exercise 2",
+                            appBarTitle: "Flexibility",
                             imageNo: "2",
                           ),
                         ),
@@ -73,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: const Select(
                       imagePath: 'assets/2.jpg',
-                      title: "Exercise 2",
+                      title: "Flexibility",
                     ),
                   ),
                   GestureDetector(
@@ -81,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.of(context).push(
                         CupertinoPageRoute(
                           builder: (context) => const InstructionPage(
-                            appBarTitle: "Exercise 3",
+                            appBarTitle: "Cardiovascular Endurance",
                             imageNo: "3",
                           ),
                         ),
@@ -89,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: const Select(
                       imagePath: 'assets/3.jpg',
-                      title: "Exercise 3",
+                      title: "Cardiovascular Endurance",
                     ),
                   ),
                 ],
