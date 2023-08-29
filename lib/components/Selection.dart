@@ -9,12 +9,12 @@ class Select extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(imagePath),
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
       ),
       child: Row(
@@ -29,12 +29,12 @@ class Select extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(2),
+              padding: const EdgeInsets.all(3),
               child: Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: "Avenir Medium",
-                  fontSize: 25,
+                  fontSize: 25 * (MediaQuery.of(context).size.height / 867),
                   color: Colors.white,
                 ),
               ),
