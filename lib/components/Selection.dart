@@ -9,7 +9,7 @@ class Select extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.22,
+      height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -32,9 +32,9 @@ class Select extends StatelessWidget {
               padding: const EdgeInsets.all(3),
               child: Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: "Avenir Medium",
-                  fontSize: 25,
+                  fontSize: 25 * (MediaQuery.of(context).size.height / 867),
                   color: Colors.white,
                 ),
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:innofest_app/screens/ExercisePage.dart';
+import 'package:innofest_app/screens/CountdownPage.dart';
 
 class InstructionPage extends StatefulWidget {
   final String appBarTitle;
@@ -51,7 +51,7 @@ class _InstructionPageState extends State<InstructionPage>
           onPressed: () {
             Navigator.of(context).push(
               CupertinoPageRoute(
-                builder: (context) => const ExercisePage(),
+                builder: (context) => const CountdownPage(),
               ),
             );
           },
@@ -60,13 +60,13 @@ class _InstructionPageState extends State<InstructionPage>
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Text(
               "Start",
               style: TextStyle(
                   fontFamily: "Avenir Roman",
-                  fontSize: 25,
+                  fontSize: 25 * (MediaQuery.of(context).size.height / 867),
                   color: Colors.white),
             ),
           ),
@@ -75,7 +75,7 @@ class _InstructionPageState extends State<InstructionPage>
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 300,
+            expandedHeight: 300 * (MediaQuery.of(context).size.height / 867),
             foregroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
@@ -103,10 +103,10 @@ class _InstructionPageState extends State<InstructionPage>
                       widget.appBarTitle,
                       style: TextStyle(
                         fontFamily: "Avenir Roman",
-                        fontSize:
-                            widget.appBarTitle == "Cardiovascular Endurance"
-                                ? 30
-                                : 35,
+                        fontSize: widget.appBarTitle ==
+                                "Cardiovascular Endurance"
+                            ? 30 * (MediaQuery.of(context).size.height / 867)
+                            : 35 * (MediaQuery.of(context).size.height / 867),
                         color: widget.imageNo == "1"
                             ? Colors.white
                             : widget.imageNo == "2"

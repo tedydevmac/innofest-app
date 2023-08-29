@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:innofest_app/screens/StepsPage.dart';
 
-class ExercisePage extends StatefulWidget {
-  const ExercisePage({super.key});
+class CountdownPage extends StatefulWidget {
+  const CountdownPage({super.key});
 
   @override
-  State<ExercisePage> createState() => _ExercisePageState();
+  State<CountdownPage> createState() => _CountdownPageState();
 }
 
-class _ExercisePageState extends State<ExercisePage> {
+class _CountdownPageState extends State<CountdownPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +35,8 @@ class _ExercisePageState extends State<ExercisePage> {
                 backgroundGradient: null,
                 strokeWidth: 20.0,
                 strokeCap: StrokeCap.round,
-                textStyle: const TextStyle(
-                    fontSize: 33.0,
+                textStyle: TextStyle(
+                    fontSize: 33.0 * (MediaQuery.of(context).size.height / 867),
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
                 textFormat: CountdownTextFormat.S,
@@ -46,7 +48,11 @@ class _ExercisePageState extends State<ExercisePage> {
                   debugPrint('Countdown Started');
                 },
                 onComplete: () {
-                  debugPrint('Countdown Ended');
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (context) => const StepsPage(),
+                    ),
+                  );
                 },
                 onChange: (String timeStamp) {
                   debugPrint('Countdown Changed $timeStamp');
