@@ -1,16 +1,6 @@
-# innofest_app
+# WorkBud
+### A self-help application to edducate and teach SSTudents how to exercise properly by providing guides and instructions to certain common exercises based on muscle group or target group
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Made using Flutter
+Made for Secondary 2 ChangeMakers Project
+By Goh Min Wen, Ted
