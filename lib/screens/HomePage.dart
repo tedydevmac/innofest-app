@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
         child: CircularProgressIndicator(),
       );
     }
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -63,6 +64,48 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Future<void> _showInfoDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Image Attributions',
+            style: TextStyle(
+              fontSize: 22.5 * (MediaQuery.of(context).size.height / 867),
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'The images used within this application are taken from Pexels. \nTheir license allows us to use their images for free and without attribution',
+                  style: TextStyle(
+                    fontSize: 18 * (MediaQuery.of(context).size.height / 867),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text(
+                'I Understand',
+                style: TextStyle(
+                  fontSize: 16 * (MediaQuery.of(context).size.height / 867),
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,20 +117,30 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).brightness == Brightness.light
             ? Colors.green
             : Colors.lightGreen,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "WorkBud",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25 * (MediaQuery.of(context).size.height / 867),
-                  fontFamily: "Avenir Medium",
-                  color: Theme.of(context).brightness == Brightness.light
-                      ? Colors.white
-                      : Colors.black),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: IconButton(
+              onPressed: _showInfoDialog,
+              icon: Icon(
+                Icons.info_outline,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? Colors.white
+                    : Colors.black,
+                size: 25 * (MediaQuery.of(context).size.height / 867),
+              ),
             ),
-          ],
+          )
+        ],
+        title: Text(
+          "WorkBud",
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 25 * (MediaQuery.of(context).size.height / 867),
+              fontFamily: "Avenir Medium",
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.white
+                  : Colors.black),
         ),
       ),
       body: SafeArea(
@@ -105,8 +158,8 @@ class _HomePageState extends State<HomePage> {
                   dynamicItemSize: true,
                   itemCount: widgetIndex.length,
                   onItemFocus: (int) {
-                    print(MediaQuery.of(context).size.width); // width: 411
-                    print(MediaQuery.of(context).size.height); // height: 867
+                    // print(MediaQuery.of(context).size.width); // width: 411
+                    // print(MediaQuery.of(context).size.height); // height: 867
                   },
                 ),
               ),

@@ -47,27 +47,30 @@ class _InstructionPageState extends State<InstructionPage>
     return Scaffold(
       floatingActionButton: SizedBox(
         width: 95,
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => const CountdownPage(),
+        child: Visibility(
+          visible: expanded1 || expanded2 == true ? false : true,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => const CountdownPage(),
+                ),
+              );
+            },
+            backgroundColor: Colors.green,
+            enableFeedback: true,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: Text(
+                "Start",
+                style: TextStyle(
+                    fontFamily: "Avenir Roman",
+                    fontSize: 25 * (MediaQuery.of(context).size.height / 867),
+                    color: Colors.white),
               ),
-            );
-          },
-          backgroundColor: Colors.green,
-          enableFeedback: true,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Text(
-              "Start",
-              style: TextStyle(
-                  fontFamily: "Avenir Roman",
-                  fontSize: 25 * (MediaQuery.of(context).size.height / 867),
-                  color: Colors.white),
             ),
           ),
         ),
@@ -89,7 +92,7 @@ class _InstructionPageState extends State<InstructionPage>
                 ? Colors.blueGrey[700]
                 : widget.imageNo == "2"
                     ? Colors.indigo[100]
-                    : Colors.white,
+                    : Colors.brown,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(40),
               child: Row(
