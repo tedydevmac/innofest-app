@@ -46,7 +46,7 @@ class _InstructionPageState extends State<InstructionPage>
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: SizedBox(
-        width: 95,
+        width: 95 * (MediaQuery.of(context).size.width / 411),
         child: Visibility(
           visible: expanded1 || expanded2 == true ? false : true,
           child: FloatingActionButton(
@@ -68,7 +68,7 @@ class _InstructionPageState extends State<InstructionPage>
                 "Start",
                 style: TextStyle(
                     fontFamily: "Avenir Roman",
-                    fontSize: 25 * (MediaQuery.of(context).size.height / 867),
+                    fontSize: 23 * (MediaQuery.of(context).size.height / 867),
                     color: Colors.white),
               ),
             ),

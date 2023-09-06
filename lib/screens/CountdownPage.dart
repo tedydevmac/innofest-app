@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:innofest_app/screens/StepsPage.dart';
+import 'package:innofest_app/screens/IntroductoryPage.dart';
 
 class CountdownPage extends StatefulWidget {
   const CountdownPage({super.key});
@@ -14,6 +14,14 @@ class _CountdownPageState extends State<CountdownPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+      ),
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -36,7 +44,7 @@ class _CountdownPageState extends State<CountdownPage> {
                 strokeWidth: 20.0,
                 strokeCap: StrokeCap.round,
                 textStyle: TextStyle(
-                    fontSize: 33.0 * (MediaQuery.of(context).size.height / 867),
+                    fontSize: 40.0 * (MediaQuery.of(context).size.height / 867),
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
                 textFormat: CountdownTextFormat.S,
@@ -50,7 +58,7 @@ class _CountdownPageState extends State<CountdownPage> {
                 onComplete: () {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
-                      builder: (context) => const StepsPage(),
+                      builder: (context) => const IntroductoryPage(),
                     ),
                   );
                 },

@@ -37,6 +37,8 @@ dependencies:
   another_flutter_splash_screen: ^1.1.5
   circular_countdown_timer: ^0.2.3
   scroll_snap_list: ^0.9.1
+  lottie: ^2.6.0
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,8 @@ flutter:
     - assets/4.jpg
     - assets/logo.jpeg
     - assets/logo-transparent.png
+    - lottie-jsons/animation_lm6jk0ks.json
+    - lottie-jsons/animation_lm6jpgpz.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

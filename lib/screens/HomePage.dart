@@ -153,10 +153,14 @@ class _HomePageState extends State<HomePage> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: ScrollSnapList(
+                  curve: Curves.ease,
+                  duration: 150,
+                  focusOnItemTap: true,
                   itemBuilder: _buildItemList,
                   itemSize: MediaQuery.of(context).size.width,
                   dynamicItemSize: true,
                   itemCount: widgetIndex.length,
+                  scrollPhysics: const ScrollPhysics(),
                   onItemFocus: (int) {
                     // print(MediaQuery.of(context).size.width); // width: 411
                     // print(MediaQuery.of(context).size.height); // height: 867
