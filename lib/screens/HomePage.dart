@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            'Image Attributions',
+            'Attributions',
             style: TextStyle(
               fontSize: 22.5 * (MediaQuery.of(context).size.height / 867),
             ),
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
             child: ListBody(
               children: <Widget>[
                 Text(
-                  'The images used within this application are taken from Pexels. \nTheir license allows us to use their images for free and without attribution',
+                  'The images used within this application are taken from Pexels. \n\nThe animations used are taken from LottieFiles. \n\nThe licenses from Pexels and LottieFiles for these resources allow us to use them free of charge and without any attributions.',
                   style: TextStyle(
                     fontSize: 18 * (MediaQuery.of(context).size.height / 867),
                   ),
