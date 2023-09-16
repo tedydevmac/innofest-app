@@ -37,6 +37,9 @@ dependencies:
   another_flutter_splash_screen: ^1.1.5
   circular_countdown_timer: ^0.2.3
   scroll_snap_list: ^0.9.1
+  lottie: ^2.6.0
+  animated_text_kit: ^4.2.2
+  camera: ^0.10.5+4
 
 dev_dependencies:
   flutter_test:
@@ -61,13 +64,22 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/1.jpg
-    - assets/2.jpg
-    - assets/3.jpg
-    - assets/4.jpg
-    - assets/logo.jpeg
-    - assets/logo-transparent.png
-
+    - assets/
+    - assets/splashhome/1.jpg
+    - assets/splashhome/2.jpg
+    - assets/splashhome/3.jpg
+    - assets/splashhome/4.jpg
+    - assets/splashhome/logo.jpeg
+    - assets/splashhome/logo-transparent.png
+    - assets/lottie-jsons/pushup-1.json
+    - assets/jumping-jack/jumpjack.png
+    - assets/jumping-jack/jumping-jack.json
+    - assets/pushup/pushup-pose.png
+    - assets/pushup/pushup2.png
+    - assets/plank/plank1.png
+    - assets/plank/plank-start.json
+    - assets/seat-stretch/seatstretch.png
+    - assets/lottie-jsons/stretch.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

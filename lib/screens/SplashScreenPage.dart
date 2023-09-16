@@ -19,7 +19,7 @@ class SplashScreenPage extends StatelessWidget {
       childWidget: SizedBox(
         height: MediaQuery.of(context).size.height * 0.95,
         width: MediaQuery.of(context).size.width * 0.95,
-        child: Image.asset("assets/logo-transparent.png"),
+        child: Image.asset("assets/splashhome/logo-transparent.png"),
       ),
       duration: const Duration(milliseconds: 1500),
       animationDuration: const Duration(milliseconds: 1000),

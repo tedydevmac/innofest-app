@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:innofest_app/screens/CountdownPage.dart';
+import 'package:innofest_app/screens/IntroductoryPage.dart';
 
 class InstructionPage extends StatefulWidget {
   final String appBarTitle;
@@ -46,28 +46,33 @@ class _InstructionPageState extends State<InstructionPage>
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: SizedBox(
-        width: 95,
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => const CountdownPage(),
+        width: 95 * (MediaQuery.of(context).size.width / 411),
+        child: Visibility(
+          visible: expanded1 || expanded2 == true ? false : true,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => IntroductoryPage(
+                    pageIndex: int.parse(widget.imageNo),
+                  ),
+                ),
+              );
+            },
+            backgroundColor: Colors.green,
+            enableFeedback: true,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: Text(
+                "Start",
+                style: TextStyle(
+                    fontFamily: "Avenir Roman",
+                    fontSize: 23 * (MediaQuery.of(context).size.height / 867),
+                    color: Colors.white),
               ),
-            );
-          },
-          backgroundColor: Colors.green,
-          enableFeedback: true,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Text(
-              "Start",
-              style: TextStyle(
-                  fontFamily: "Avenir Roman",
-                  fontSize: 25 * (MediaQuery.of(context).size.height / 867),
-                  color: Colors.white),
             ),
           ),
         ),
@@ -79,7 +84,7 @@ class _InstructionPageState extends State<InstructionPage>
             foregroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
-                'assets/${widget.imageNo}.jpg',
+                'assets/splashhome/${widget.imageNo}.jpg',
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -89,7 +94,7 @@ class _InstructionPageState extends State<InstructionPage>
                 ? Colors.blueGrey[700]
                 : widget.imageNo == "2"
                     ? Colors.indigo[100]
-                    : Colors.white,
+                    : Colors.brown,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(40),
               child: Row(
@@ -177,12 +182,18 @@ class _InstructionPageState extends State<InstructionPage>
                           ],
                         ),
                         if (expanded1 == true)
-                          const Expanded(
+                          Expanded(
                             child: Text(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                              style: TextStyle(
+                              int.parse(widget.imageNo) == 1
+                                  ? "Planking is a form of muscular strength exercise which aids in activating core muscles within your body such as your transversus abdominis."
+                                  : int.parse(widget.imageNo) == 2
+                                      ? "Seat-stretching is a flexibility exercise which helps work muscles such as your glutes and lower back muscles, improving overall flexibility and balance. "
+                                      : int.parse(widget.imageNo) == 3
+                                          ? "Jumping Jacks are a form of cardiovascular endurance exercise which targets all major lower body muscles, primarily targeting the calves, quadriceps and shoulders."
+                                          : "Push Up is a form of muscular endurance exercise which helps to build muscles responsible for muscular strength such as triceps, pectoral muscles, and shoulders. ",
+                              style: const TextStyle(
                                   fontFamily: "Avenir Medium",
-                                  fontSize: 18,
+                                  fontSize: 20,
                                   color: Colors.white),
                             ),
                           ),
@@ -242,12 +253,19 @@ class _InstructionPageState extends State<InstructionPage>
                         ),
                         if (expanded2 == true)
                           const Expanded(
-                            child: Text(
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                              style: TextStyle(
-                                  fontFamily: "Avenir Medium",
-                                  fontSize: 18,
-                                  color: Colors.white),
+                            child: SingleChildScrollView(
+                              physics: AlwaysScrollableScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Throughout the instructions, there will be an animation or image provided to learn how to do the respective exercises, a camera preview will be provided to allow you to see your exercise form while following the instructions. There will be two buttons, 'Capture' and 'View', where 'Capture' lets you take a picture of your form and 'View' lets you view the image you captured. When pressing the 'Capture' button, you may need to wait a few seconds after pressing the button to allow your device to capture.",
+                                  style: TextStyle(
+                                      fontFamily: "Avenir Medium",
+                                      fontSize: 18,
+                                      color: Colors.white),
+                                ),
+                              ),
                             ),
                           ),
                       ],
