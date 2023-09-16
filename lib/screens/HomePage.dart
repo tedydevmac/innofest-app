@@ -28,12 +28,12 @@ class _HomePageState extends State<HomePage> {
           CupertinoPageRoute(
             builder: (context) => InstructionPage(
               appBarTitle: widgetIndex[index] == 1
-                  ? "Muscular Endurance"
+                  ? "Push Ups"
                   : widgetIndex[index] == 2
-                      ? "Muscular Strength"
+                      ? "Plank"
                       : widgetIndex[index] == 3
-                          ? "Flexibility"
-                          : "Cardiovascular Endurance",
+                          ? "Seat-Stretch"
+                          : "Jumping Jacks",
               imageNo: widgetIndex[index] == 1
                   ? "4"
                   : widgetIndex[index] == 2
@@ -47,19 +47,19 @@ class _HomePageState extends State<HomePage> {
       },
       child: Select(
         title: widgetIndex[index] == 1
-            ? "Muscular Endurance"
+            ? "Push Ups"
             : widgetIndex[index] == 2
-                ? "Muscular Strength"
+                ? "Plank"
                 : widgetIndex[index] == 3
-                    ? "Flexibility"
-                    : "Cardiovascular Endurance",
+                    ? "Seat-Stretch"
+                    : "Jumping Jacks",
         imagePath: widgetIndex[index] == 1
-            ? "assets/4.jpg"
+            ? "assets/splashhome/4.jpg"
             : widgetIndex[index] == 2
-                ? "assets/1.jpg"
+                ? "assets/splashhome/1.jpg"
                 : widgetIndex[index] == 3
-                    ? "assets/2.jpg"
-                    : "assets/3.jpg",
+                    ? "assets/splashhome/2.jpg"
+                    : "assets/splashhome/3.jpg",
       ),
     );
   }
@@ -114,6 +114,7 @@ class _HomePageState extends State<HomePage> {
           : Colors.lightGreen,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Theme.of(context).brightness == Brightness.light
             ? Colors.green
             : Colors.lightGreen,
@@ -174,3 +175,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+// Push-up:
+// instruction: "1. Get on all fours and straighten out your legs and arms\n2. Place your hands slightly wider than shoulder length"
+// path: "assets/pushup/pushup-pose.png" // https://pngtree.com/freepng/push-ups-fitness-fitness-man-the-man_3922517.html png image from pngtree.com
+// Plank:
+// instruction: "1. Get on all fours. 2. Place forearms on the floor with elbows aligned below shoulders and arms parallel to your body at about shoulder width"
+// path : "assets/plank/plank1.png" // https://pngtree.com/freepng/boys-do-tablet-support-exercise_4440555.html png image from pngtree.com
+// Seat stretch:
+// instruction: "1. Sit with the legs together, feet flexed, and hands on the shins or ankles. \n 2. Bring the chin toward the knees"
+// path: "assets/seat-stretch/seatstretch.png"
+// 

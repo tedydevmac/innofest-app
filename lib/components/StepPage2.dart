@@ -1,56 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:innofest_app/components/StepPage2.dart';
-import 'package:innofest_app/screens/SplashScreenPage.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
+import 'package:innofest_app/main.dart';
+import 'package:innofest_app/screens/HomePage.dart';
 
-List<CameraDescription>? cameras;
-
-final ThemeData lightTheme = ThemeData(
-    brightness: Brightness.light,
-    useMaterial3: true,
-    primaryColor: Colors.green);
-
-final ThemeData darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    useMaterial3: true,
-    primaryColor: Colors.lightGreen);
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  cameras = await availableCameras();
-
-  runApp(
-    MaterialApp(
-      home: const SplashScreenPage(),
-      title: "WorkBud",
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      debugShowCheckedModeBanner: false,
-    ),
-  );
-}
-
-class StepsPage extends StatefulWidget {
-  const StepsPage({
+class StepsPage2 extends StatefulWidget {
+  const StepsPage2({
     super.key,
-    required this.instructions1,
-    required this.contentPath1,
-    required this.instructions2,
-    required this.contentPath2,
+    required this.instructions,
+    required this.contentPath,
   });
-  final String instructions1;
-  final String contentPath1;
-  final String instructions2;
-  final String contentPath2;
+  final String instructions;
+  final String contentPath;
 
   @override
-  State<StepsPage> createState() => _StepsPageState();
+  State<StepsPage2> createState() => _StepsPage2State();
 }
 
-class _StepsPageState extends State<StepsPage> {
+class _StepsPage2State extends State<StepsPage2> {
   late CameraController _controller;
   CameraImage? picture;
   XFile? imageforshow;
@@ -115,7 +83,7 @@ class _StepsPageState extends State<StepsPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                widget.instructions1,
+                widget.instructions,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 19 * (MediaQuery.of(context).size.height / 867),
@@ -129,7 +97,7 @@ class _StepsPageState extends State<StepsPage> {
                 alignment: Alignment.bottomCenter,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.68 * 0.625,
+                    height: MediaQuery.of(context).size.height * 0.68 * 0.65,
                     width: MediaQuery.of(context).size.width,
                     child: replace == false
                         ? CameraPreview(_controller)
@@ -139,17 +107,14 @@ class _StepsPageState extends State<StepsPage> {
                           ),
                   ),
                   Positioned(
-                    bottom: 390,
+                    bottom: 430,
                     child: Image.asset(
-                      widget.contentPath1,
+                      widget.contentPath,
                       filterQuality: FilterQuality.high,
                       isAntiAlias: true,
                       height: MediaQuery.of(context).size.height * 0.68 * 0.31,
                       width: MediaQuery.of(context).size.width,
-                      fit: widget.contentPath1 ==
-                              "assets/jumping-jack/jumpjack.png"
-                          ? BoxFit.contain
-                          : BoxFit.fitWidth,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ],
@@ -251,13 +216,7 @@ class _StepsPageState extends State<StepsPage> {
             FilledButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  CupertinoPageRoute(
-                    builder: (builder) => StepsPage2(
-                      instructions: widget.instructions2,
-                      contentPath: widget.contentPath2,
-                    ),
-                  ),
-                );
+                    CupertinoPageRoute(builder: (builder) => const HomePage()));
               },
               style: ButtonStyle(
                 elevation: MaterialStateProperty.resolveWith((states) => 1.5),
@@ -290,10 +249,3 @@ class _StepsPageState extends State<StepsPage> {
     );
   }
 }
-
-
-
-// Muscular Endurance: Push-up
-// Muscular Strength: Plank
-// Flexibility: Seat-sretch
-// Cardiovascular Endurance: Jumping Jacks
