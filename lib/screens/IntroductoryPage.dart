@@ -76,6 +76,7 @@ class _IntroductoryPageState extends State<IntroductoryPage> {
               ),
               FilledButton(
                 onPressed: () {
+                  
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (builder) => StepsPage(
