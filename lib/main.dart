@@ -5,8 +5,11 @@ import 'package:innofest_app/screens/SplashScreenPage.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<CameraDescription>? cameras;
+int points = 0;
+SharedPreferences? prefs;
 
 final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
@@ -21,7 +24,9 @@ final ThemeData darkTheme = ThemeData(
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
-
+  prefs = await SharedPreferences.getInstance();
+  if (prefs!.getInt("budpoints") == null) await prefs!.setInt("budpoints", 0);
+  if (prefs!.getInt("budgoal") == null) await prefs!.setInt("budgoal", 100);
   runApp(
     MaterialApp(
       home: const SplashScreenPage(),

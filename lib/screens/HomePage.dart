@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:innofest_app/components/Selection.dart';
 import 'package:innofest_app/screens/InstructionPage.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
+import 'package:innofest_app/main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -15,6 +16,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<int> widgetIndex = [1, 2, 3, 4];
+  bool showInput = false;
+
+  final TextEditingController goalController =
+      TextEditingController(text: "Input goal here");
   Widget _buildItemList(BuildContext context, int index) {
     if (index == widgetIndex.length) {
       return const Center(
@@ -106,6 +111,103 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Future<void> _showBudDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'BudPoints',
+            style: TextStyle(
+              fontSize: 22.5 * (MediaQuery.of(context).size.height / 867),
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      showInput = !showInput;
+                    });
+                  },
+                  child: Text(
+                    "Current Goal: ${prefs!.getInt("budgoal")} \n (Tap to change)",
+                    style: TextStyle(
+                      fontSize: 18 * (MediaQuery.of(context).size.height / 867),
+                    ),
+                  ),
+                ),
+                if (showInput == true)
+                  TextField(
+                    controller: goalController,
+                  ),
+                if (showInput == true)
+                  FilledButton(
+                    onPressed: () {
+                      prefs!.setInt(
+                        "budgoal",
+                        int.parse(goalController.text),
+                      );
+                      setState(() {
+                        showInput = !showInput;
+                      });
+                    },
+                    style: ButtonStyle(
+                      elevation:
+                          MaterialStateProperty.resolveWith((states) => 1.5),
+                      backgroundColor:
+                          Theme.of(context).brightness == Brightness.light
+                              ? MaterialStateProperty.resolveWith(
+                                  (states) => lightTheme.primaryColor)
+                              : MaterialStateProperty.resolveWith(
+                                  (states) => darkTheme.primaryColor),
+                      enableFeedback: true,
+                      shape: MaterialStateProperty.resolveWith(
+                        (states) => RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            15 * (MediaQuery.of(context).size.width / 411),
+                          ),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      "Confirm",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize:
+                            17.5 * (MediaQuery.of(context).size.height / 867),
+                      ),
+                    ),
+                  ),
+                Text(
+                  "Current progress: ${prefs!.getInt("budpoints")}",
+                  style: TextStyle(
+                    fontSize: 18 * (MediaQuery.of(context).size.height / 867),
+                  ),
+                )
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text(
+                'Cool',
+                style: TextStyle(
+                  fontSize: 16 * (MediaQuery.of(context).size.height / 867),
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,19 +221,26 @@ class _HomePageState extends State<HomePage> {
             ? Colors.green
             : Colors.lightGreen,
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: IconButton(
-              onPressed: _showInfoDialog,
-              icon: Icon(
-                Icons.info_outline,
-                color: Theme.of(context).brightness == Brightness.light
-                    ? Colors.white
-                    : Colors.black,
-                size: 25 * (MediaQuery.of(context).size.height / 867),
-              ),
+          IconButton(
+            onPressed: _showBudDialog,
+            icon: Icon(
+              Icons.bolt,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.white
+                  : Colors.black,
+              size: 28 * (MediaQuery.of(context).size.height / 867),
             ),
-          )
+          ),
+          IconButton(
+            onPressed: _showInfoDialog,
+            icon: Icon(
+              Icons.info_outline,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.white
+                  : Colors.black,
+              size: 25 * (MediaQuery.of(context).size.height / 867),
+            ),
+          ),
         ],
         title: Text(
           "WorkBud",

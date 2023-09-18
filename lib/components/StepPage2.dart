@@ -114,7 +114,7 @@ class _StepsPage2State extends State<StepsPage2> {
                       isAntiAlias: true,
                       height: MediaQuery.of(context).size.height * 0.68 * 0.31,
                       width: MediaQuery.of(context).size.width,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
                 ],
@@ -215,6 +215,9 @@ class _StepsPage2State extends State<StepsPage2> {
             ),
             FilledButton(
               onPressed: () {
+                int? temp = prefs!.getInt('budpoints');
+                temp ??= 0;
+                prefs!.setInt("budpoints", temp += 1);
                 Navigator.of(context).push(
                     CupertinoPageRoute(builder: (builder) => const HomePage()));
               },

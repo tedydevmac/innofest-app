@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:innofest_app/screens/IntroductoryPage.dart';
+import 'package:square_progress_bar/square_progress_bar.dart';
+import 'package:innofest_app/main.dart';
 
 class InstructionPage extends StatefulWidget {
   final String appBarTitle;
@@ -273,6 +275,66 @@ class _InstructionPageState extends State<InstructionPage>
                   ),
                 ),
               ],
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 75,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SquareProgressBar(
+                    progress: (prefs!.getInt("budpoints")! / 100),
+                    width: 150,
+                    height: 150,
+                    isAnimation: true,
+                    solidBarColor: Colors.green,
+                    emptyBarColor: Colors.lightGreen.withOpacity(0.2),
+                    strokeWidth: 20,
+                    barStrokeCap: StrokeCap.square,
+                    gradientBarColor: const LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: <Color>[Colors.lightGreen, Colors.green],
+                      tileMode: TileMode.repeated,
+                    ),
+                    child: Center(
+                      child: Text(
+                        "${((prefs!.getInt("budpoints")! / prefs!.getInt("budgoal")!) * 100).toStringAsFixed(2)}%",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text: "Goal: ",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.black),
+                      children: [
+                        TextSpan(
+                          text: "${prefs!.getInt("budgoal")}",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                            color: Colors.green,
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ],
