@@ -261,7 +261,7 @@ class _InstructionPageState extends State<InstructionPage>
                               child: Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  "Throughout the instructions, there will be an animation or image provided to learn how to do the respective exercises, a camera preview will be provided to allow you to see your exercise form while following the instructions. There will be two buttons, 'Capture' and 'View', where 'Capture' lets you take a picture of your form and 'View' lets you view the image you captured. When pressing the 'Capture' button, you may need to wait a few seconds after pressing the button to allow your device to capture.",
+                                  "Throughout the instructions, there will be an animation or image provided to learn how to do the respective exercises, a camera preview will be provided to allow you to see your exercise form while following the instructions. There will be two buttons, 'Capture' and 'View', where 'Capture' lets you take a picture of your form and 'View' lets you view the image you captured. When pressing the 'Capture' button, you may need to wait a few seconds after pressing the button to allow your device to capture. All the exercises provided do not require any equipment and can be done alone at home.",
                                   style: TextStyle(
                                       fontFamily: "Avenir Medium",
                                       fontSize: 18,
@@ -287,7 +287,8 @@ class _InstructionPageState extends State<InstructionPage>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SquareProgressBar(
-                    progress: (prefs!.getInt("budpoints")! / 100),
+                    progress: (prefs!.getInt("budpoints")! /
+                        prefs!.getInt("budgoal")!),
                     width: 150,
                     height: 150,
                     isAnimation: true,

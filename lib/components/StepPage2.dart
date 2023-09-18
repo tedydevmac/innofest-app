@@ -114,7 +114,7 @@ class _StepsPage2State extends State<StepsPage2> {
                       isAntiAlias: true,
                       height: MediaQuery.of(context).size.height * 0.68 * 0.31,
                       width: MediaQuery.of(context).size.width,
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ],

@@ -18,8 +18,7 @@ class _HomePageState extends State<HomePage> {
   List<int> widgetIndex = [1, 2, 3, 4];
   bool showInput = false;
 
-  final TextEditingController goalController =
-      TextEditingController(text: "Input goal here");
+  final TextEditingController goalController = TextEditingController();
   Widget _buildItemList(BuildContext context, int index) {
     if (index == widgetIndex.length) {
       return const Center(
@@ -140,44 +139,53 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 if (showInput == true)
-                  TextField(
-                    controller: goalController,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: TextField(
+                      controller: goalController,
+                      decoration: const InputDecoration(
+                        hintText: "Enter goal here",
+                      ),
+                    ),
                   ),
                 if (showInput == true)
-                  FilledButton(
-                    onPressed: () {
-                      prefs!.setInt(
-                        "budgoal",
-                        int.parse(goalController.text),
-                      );
-                      setState(() {
-                        showInput = !showInput;
-                      });
-                    },
-                    style: ButtonStyle(
-                      elevation:
-                          MaterialStateProperty.resolveWith((states) => 1.5),
-                      backgroundColor:
-                          Theme.of(context).brightness == Brightness.light
-                              ? MaterialStateProperty.resolveWith(
-                                  (states) => lightTheme.primaryColor)
-                              : MaterialStateProperty.resolveWith(
-                                  (states) => darkTheme.primaryColor),
-                      enableFeedback: true,
-                      shape: MaterialStateProperty.resolveWith(
-                        (states) => RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            15 * (MediaQuery.of(context).size.width / 411),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: FilledButton(
+                      onPressed: () {
+                        prefs!.setInt(
+                          "budgoal",
+                          int.parse(goalController.text),
+                        );
+                        setState(() {
+                          showInput = !showInput;
+                        });
+                      },
+                      style: ButtonStyle(
+                        elevation:
+                            MaterialStateProperty.resolveWith((states) => 1.5),
+                        backgroundColor:
+                            Theme.of(context).brightness == Brightness.light
+                                ? MaterialStateProperty.resolveWith(
+                                    (states) => lightTheme.primaryColor)
+                                : MaterialStateProperty.resolveWith(
+                                    (states) => darkTheme.primaryColor),
+                        enableFeedback: true,
+                        shape: MaterialStateProperty.resolveWith(
+                          (states) => RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              15 * (MediaQuery.of(context).size.width / 411),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    child: Text(
-                      "Confirm",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize:
-                            17.5 * (MediaQuery.of(context).size.height / 867),
+                      child: Text(
+                        "Confirm",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize:
+                              17.5 * (MediaQuery.of(context).size.height / 867),
+                        ),
                       ),
                     ),
                   ),
